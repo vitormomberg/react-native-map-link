@@ -160,6 +160,7 @@ export async function showLocation(options) {
       if (title) {
         url += `?q=${encodedTitle}`;
       }
+      break;
     case 'yandex':
       url = `${prefixes.yandex}build_route_on_map?lat_to=${lat}&lon_to=${lng}`;
 
