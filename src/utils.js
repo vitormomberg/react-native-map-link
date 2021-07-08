@@ -156,6 +156,7 @@ export function askAppChoice({
  * @param {{
  *     latitude: number | string,
  *     longitude: number | string,
+ *     searchByTitle: boolean,
  *     sourceLatitude: number | undefined | null,
  *     sourceLongitude: number | undefined | null,
  *     googleForceLatLon: boolean | undefined | null,
@@ -175,7 +176,10 @@ export function checkOptions(options, prefixes) {
       'First parameter of `showLocation` should contain object with options.',
     );
   }
-  if (!('latitude' in options) || !('longitude' in options)) {
+  if (
+    (!('latitude' in options) || !('longitude' in options)) &&
+    !options.searchByTitle
+  ) {
     throw new MapsException(
       'First parameter of `showLocation` should contain object with at least keys `latitude` and `longitude`.',
     );

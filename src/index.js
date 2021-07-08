@@ -20,6 +20,7 @@ import {askAppChoice, checkOptions} from './utils';
  *     googlePlaceId: number | undefined | null,
  *     title: string | undefined | null,
  *     app: string | undefined | null
+ *     searchByTitle: boolean,
  *     dialogTitle: string | undefined | null
  *     dialogMessage: string | undefined | null
  *     cancelText: string | undefined | null
@@ -150,11 +151,15 @@ export async function showLocation(options) {
       }
       break;
     case 'waze':
-      url = `${prefixes.waze}?ll=${latlng}&navigate=yes`;
-      if (title) {
-        url += `&q=${encodedTitle}`;
+      url = `${prefixes.waze}`;
+
+      if (!options.searchByTitle) {
+        url += `?ll=${latlng}&navigate=yes`;
       }
-      break;
+
+      if (title) {
+        url += `?q=${encodedTitle}`;
+      }
     case 'yandex':
       url = `${prefixes.yandex}build_route_on_map?lat_to=${lat}&lon_to=${lng}`;
 
